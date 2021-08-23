@@ -29,7 +29,7 @@ docker pull $IMAGE
 docker tag $IMAGE "${TARGET_IMAGE}:${TAG}"
 
 # Add latest tag?
-if [ "TAG_AS_LATEST" = "true" ]
+if [ "$TAG_AS_LATEST" = "true" ]
 then
 	docker tag $IMAGE "${TARGET_IMAGE}:latest"
 fi
