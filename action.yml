@@ -1,0 +1,37 @@
+name: 'Pull Image from ECR'
+description: 'Pull a image from the ECR registry provided by the Developer Portal'
+author: 'Keboola'
+inputs:
+  vendor:
+    description: 'Application vendor (e.g. keboola)'
+    required: true
+  app_id:
+    description: 'Application ID (e.g. keboola.ex-db-mysql)'
+    required: true
+  username:
+    description: 'Developer portal Service user name (e.g. keboola+my_app_deploy_user)'
+    required: true
+  password:
+    description: 'Developer portal Service user password'
+    required: true
+  tag:
+    description: 'Image tag in the ECR'
+    required: true
+  target_image:
+    description: 'Name of the local image'
+    required: true
+  tag_as_latest:
+    description: 'If true, the local image is tagged as "latest" too.'
+    required: false
+    default: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.vendor }}
+    - ${{ inputs.app_id }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.target_image }}
+    - ${{ inputs.tag_as_latest }}
